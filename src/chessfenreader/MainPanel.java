@@ -37,13 +37,13 @@ public class MainPanel extends JPanel {
         fen = fen.substring(0, fen.indexOf(" ")).replaceAll("/", "");
         char[] fenArray = fen.toCharArray();
         
-        boolean isWhite = true;
+        boolean isLight = true;
         
         int pos = 0;
         for (BoardSquare[] row : board) {
             for (int i = 0; i < board[0].length; i++) {
                 if (Character.isLetter(fenArray[pos])) {
-                    row[i] = new BoardSquare(isWhite, Character.toString(fenArray[pos]));
+                    row[i] = new BoardSquare(isLight, Character.toString(fenArray[pos]));
                     pos++;
                 } else if (Character.isDigit(fenArray[pos])) {
                     if(fenArray[pos] == '1') {
@@ -51,12 +51,12 @@ public class MainPanel extends JPanel {
                     } else {
                         fenArray[pos]--;
                     }
-                    row[i] = new BoardSquare(isWhite, null);
+                    row[i] = new BoardSquare(isLight, null);
                 }
                 boardContainer.add(row[i]);
-                isWhite = !isWhite;
+                isLight = !isLight;
             }
-            isWhite = !isWhite;
+            isLight = !isLight;
         }
     }
     

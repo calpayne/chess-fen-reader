@@ -11,12 +11,12 @@ import javax.swing.JLabel;
  */
 public class BoardSquare extends JLabel {
     
-    public BoardSquare(boolean isWhiteOrBlack, String piece) {
+    public BoardSquare(boolean isLight, String piece) {
         if(piece != null) {
             this.setIcon(findPiece(piece));
         }
         this.setOpaque(true);
-        this.setBackground(isWhiteOrBlack ? Color.decode("#f0d9b5") : Color.decode("#b58863"));
+        this.setBackground(isLight ? Color.decode("#f0d9b5") : Color.decode("#b58863"));
         this.setPreferredSize(new Dimension(75, 75));
         this.setHorizontalAlignment(JLabel.CENTER);
     }
