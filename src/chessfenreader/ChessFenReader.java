@@ -18,5 +18,5 @@ public class ChessFenReader {
         app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         app.setVisible(true);
     }
-    
+
 }

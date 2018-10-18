@@ -10,9 +10,9 @@ import javax.swing.JLabel;
  * @author Cal Payne
  */
 public class BoardSquare extends JLabel {
-    
+
     public BoardSquare(boolean isLight, String piece) {
-        if(piece != null) {
+        if (piece != null) {
             this.setIcon(findPiece(piece));
         }
         this.setOpaque(true);
@@ -20,9 +20,15 @@ public class BoardSquare extends JLabel {
         this.setPreferredSize(new Dimension(75, 75));
         this.setHorizontalAlignment(JLabel.CENTER);
     }
-    
+
+    /**
+     * Converts fen piece to ImageIcon
+     * 
+     * @param piece the piece to find an image for
+     * @return the ImageIcon of the piece
+     */
     private ImageIcon findPiece(String piece) {
-        switch(piece) {
+        switch (piece) {
             case "p":
                 return new ImageIcon("pieces/PB.png");
             case "P":
@@ -47,10 +53,10 @@ public class BoardSquare extends JLabel {
                 return new ImageIcon("pieces/BB.png");
             case "B":
                 return new ImageIcon("pieces/b.png");
-        
+
         }
-        
-        return new ImageIcon("pieces/P.png");
+
+        return null;
     }
-    
+
 }
