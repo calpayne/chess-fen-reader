@@ -1,5 +1,6 @@
 package chessfenreader;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JButton;
@@ -18,21 +19,9 @@ public class MainPanel extends JPanel {
     public MainPanel() {
         board = new BoardSquare[8][8];
         boardContainer = new JPanel();
-        boolean isWhite = true;
-        
-        String fenExm = "5r2/2p2rb1/1pNp4/p2Pp1pk/2P1K3/PP3PP1/5R2/5R2 w - - 1 51";
-        
         boardContainer.setLayout(new GridLayout(8, 8));
         
-        for(int i = 0; i < board.length; i++) {
-            for(int j = 0; j < board[0].length; j++) {
-                board[i][j] = new BoardSquare(isWhite, null);
-                boardContainer.add(board[i][j]);
-                isWhite = !isWhite;
-            }
-            
-            isWhite = !isWhite;
-        }
+        renderFen("K6p/7p/1p1k4/6k1/8/1p6/8/8 w KQkq -");
         
         JTextField fen = new JTextField(25);
         JButton submit = new JButton("Set Fen");
@@ -40,7 +29,35 @@ public class MainPanel extends JPanel {
         this.add(fen);
         this.add(submit);
         this.add(boardContainer);
-        this.setPreferredSize(new Dimension(650, 650));
+        this.setBackground(Color.WHITE);
+        this.setPreferredSize(new Dimension(650, 660));
+    }
+    
+    public void renderFen(String fen) {
+        fen = fen.substring(0, fen.indexOf(" ")).replaceAll("/", "");
+        char[] fenArray = fen.toCharArray();
+        
+        boolean isWhite = true;
+        
+        int pos = 0;
+        for (BoardSquare[] row : board) {
+            for (int i = 0; i < board[0].length; i++) {
+                if (Character.isLetter(fenArray[pos])) {
+                    row[i] = new BoardSquare(isWhite, Character.toString(fenArray[pos]));
+                    pos++;
+                } else if (Character.isDigit(fenArray[pos])) {
+                    if(fenArray[pos] == '1') {
+                        pos++;
+                    } else {
+                        fenArray[pos]--;
+                    }
+                    row[i] = new BoardSquare(isWhite, null);
+                }
+                boardContainer.add(row[i]);
+                isWhite = !isWhite;
+            }
+            isWhite = !isWhite;
+        }
     }
     
 }

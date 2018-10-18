@@ -16,12 +16,40 @@ public class BoardSquare extends JLabel {
             this.setIcon(findPiece(piece));
         }
         this.setOpaque(true);
-        this.setBackground(isWhiteOrBlack ? Color.WHITE : Color.BLACK);
+        this.setBackground(isWhiteOrBlack ? Color.decode("#f0d9b5") : Color.decode("#b58863"));
         this.setPreferredSize(new Dimension(75, 75));
         this.setHorizontalAlignment(JLabel.CENTER);
     }
     
     private ImageIcon findPiece(String piece) {
+        switch(piece) {
+            case "p":
+                return new ImageIcon("pieces/PB.png");
+            case "P":
+                return new ImageIcon("pieces/p.png");
+            case "k":
+                return new ImageIcon("pieces/KB.png");
+            case "K":
+                return new ImageIcon("pieces/k.png");
+            case "n":
+                return new ImageIcon("pieces/knB.png");
+            case "N":
+                return new ImageIcon("pieces/Kn.png");
+            case "q":
+                return new ImageIcon("pieces/QB.png");
+            case "Q":
+                return new ImageIcon("pieces/q.png");
+            case "r":
+                return new ImageIcon("pieces/RB.png");
+            case "R":
+                return new ImageIcon("pieces/r.png");
+            case "b":
+                return new ImageIcon("pieces/BB.png");
+            case "B":
+                return new ImageIcon("pieces/b.png");
+        
+        }
+        
         return new ImageIcon("pieces/P.png");
     }
     
