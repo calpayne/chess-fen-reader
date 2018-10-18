@@ -3,6 +3,7 @@ package chessfenreader;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -21,16 +22,25 @@ public class MainPanel extends JPanel {
         boardContainer = new JPanel();
         boardContainer.setLayout(new GridLayout(8, 8));
 
-        renderFen("K6p/7p/1p1k4/6k1/8/1p6/8/8 w KQkq -");
+        renderFen("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -");
 
-        JTextField fen = new JTextField(25);
+        JTextField fen = new JTextField("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq -", 40);
         JButton submit = new JButton("Set Fen");
+        submit.addActionListener((ActionEvent ae) -> {
+            if(isValidFen(fen.getText())) {
+                renderFen(fen.getText());
+            }
+        });
 
         this.add(fen);
         this.add(submit);
         this.add(boardContainer);
         this.setBackground(Color.WHITE);
         this.setPreferredSize(new Dimension(650, 660));
+    }
+    
+    public boolean isValidFen(String fen) {
+        return true;
     }
 
     /**
@@ -39,6 +49,8 @@ public class MainPanel extends JPanel {
      * @param fen the fen to render
      */
     public void renderFen(String fen) {
+        boardContainer.removeAll();
+        
         fen = fen.substring(0, fen.indexOf(" ")).replaceAll("/", "");
         char[] fenArray = fen.toCharArray();
 
@@ -63,6 +75,9 @@ public class MainPanel extends JPanel {
             }
             isLight = !isLight;
         }
+        
+        boardContainer.revalidate();
+        boardContainer.repaint();
     }
 
 }
