@@ -78,7 +78,7 @@ public class MainPanel extends JPanel {
      *
      * @param fen the fen to render
      */
-    public void renderFen(String fen) {
+    public final void renderFen(String fen) {
         boardContainer.removeAll();
 
         fen = fen.substring(0, fen.indexOf(" ")).replaceAll("/", "");

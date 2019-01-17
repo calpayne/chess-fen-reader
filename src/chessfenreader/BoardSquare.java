@@ -23,40 +23,16 @@ public class BoardSquare extends JLabel {
 
     /**
      * Converts fen piece to ImageIcon
-     * 
+     *
      * @param piece the piece to find an image for
      * @return the ImageIcon of the piece
      */
     private ImageIcon findPiece(String piece) {
-        switch (piece) {
-            case "p":
-                return new ImageIcon("pieces/PB.png");
-            case "P":
-                return new ImageIcon("pieces/p.png");
-            case "k":
-                return new ImageIcon("pieces/KB.png");
-            case "K":
-                return new ImageIcon("pieces/k.png");
-            case "n":
-                return new ImageIcon("pieces/knB.png");
-            case "N":
-                return new ImageIcon("pieces/Kn.png");
-            case "q":
-                return new ImageIcon("pieces/QB.png");
-            case "Q":
-                return new ImageIcon("pieces/q.png");
-            case "r":
-                return new ImageIcon("pieces/RB.png");
-            case "R":
-                return new ImageIcon("pieces/r.png");
-            case "b":
-                return new ImageIcon("pieces/BB.png");
-            case "B":
-                return new ImageIcon("pieces/b.png");
-
+        if (piece.toUpperCase().equals(piece)) {
+            return new ImageIcon("pieces/" + piece.toLowerCase() + ".png");
+        } else {
+            return new ImageIcon("pieces/" + piece.toLowerCase() + "b.png");
         }
-
-        return null;
     }
 
 }
